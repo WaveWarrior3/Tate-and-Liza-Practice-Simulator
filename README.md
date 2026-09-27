@@ -1,5 +1,12 @@
 # Tate & Liza Practice Tool
 
+This project was fully written by AI as part of a larger project I was doing to test the performance of AI
+coding without direct human intervention. I've thoroughly tested and ensured all parts of the simulation
+are accurate.
+
+I am not interested in maintaining/updating this tool, so anyone can steal/fork it and do whatever you want.
+
+
 A local webpage for practicing the Tate & Liza fight yourself, with the
 ability to ask the trained model (`best_model_visible-hp.pt`) what it
 would do at any decision point before you commit to your own choice.
@@ -15,7 +22,6 @@ python3 app.py
 
 Then open <http://127.0.0.1:5000/> in a browser.
 
-I am not interested in maintaining/updating this tool, so anyone can steal/fork it and do whatever you want.
 
 ## What it does
 
