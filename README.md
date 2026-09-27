@@ -15,6 +15,8 @@ python3 app.py
 
 Then open <http://127.0.0.1:5000/> in a browser.
 
+I am not interested in maintaining/updating this tool, so anyone can steal/fork it and do whatever you want.
+
 ## What it does
 
 - Start a battle with a chosen Swampert starting HP (or full HP) and an
@@ -30,8 +32,7 @@ Then open <http://127.0.0.1:5000/> in a browser.
   exactly, matching the real game's own-side display. This means you
   can't accidentally practice with more information than a real player
   has.
-- A running, scrollable battle log (identical in spirit to `evaluate.py
-  --watch`'s transcript) shows exactly what happened each turn.
+- A running, scrollable battle log shows exactly what happened each turn.
 - At the end of a battle, you'll see how often your own choice matched
   the model's own top pick — a cheap signal for tracking how your
   intuition is developing across sessions.
