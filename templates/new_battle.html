@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}New Battle{% endblock %}
+{% block content %}
+  <p>
+    Play a full Tate &amp; Liza fight yourself. At any decision, you can ask
+    the trained model (<code>{{ model_path }}</code>) what it would do here
+    before committing to your own choice. The opponent's HP is shown the
+    same limited way a real player sees it &mdash; a bar, never an exact
+    number &mdash; matching exactly what the model itself is given.
+  </p>
+
+  <form method="post" action="{{ url_for('new_battle') }}">
+    <div class="field">
+      <label for="swampert_hp">Starting Swampert HP (1&ndash;133, blank = full HP):</label>
+      <input type="number" id="swampert_hp" name="swampert_hp" min="1" max="133">
+    </div>
+    <div class="field">
+      <label for="seed">RNG seed (blank = random):</label>
+      <input type="number" id="seed" name="seed">
+    </div>
+    <button type="submit">Start Battle</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Battle{% endblock %}
+{% block content %}
+
+  <section class="state">
+    <h2>Battle State</h2>
+    <pre>{% for line in state_lines %}{{ line }}
+{% endfor %}</pre>
+  </section>
+
+  <form method="post" action="{{ url_for('battle_reset') }}" class="reset-form">
+    <button type="submit" class="reset">Reset (Abandon Battle)</button>
+  </form>
+
+  {% if revealing %}
+    <section class="decision">
+      <h2>{% if next_actor %}{{ next_actor }} is about to act{% else %}Battle Over{% endif %}</h2>
+      <form method="post" action="{{ url_for('battle_continue') }}">
+        <button type="submit" class="continue">{% if next_actor %}Continue &rarr; reveal {{ next_actor }}'s move{% else %}Continue to Result{% endif %}</button>
+      </form>
+    </section>
+  {% elif done %}
+    <section class="result">
+      <h2>Result</h2>
+      <p>See the battle log below for the outcome.</p>
+      {% if sess.result_stats %}
+        <p>
+          Turns: {{ sess.result_stats.turns }} &mdash;
+          Surf uses: {{ sess.result_stats.surf_count }}
+        </p>
+      {% endif %}
+      {% if sess.decisions_total %}
+        <p>
+          You matched the model's own top pick on
+          {{ sess.decisions_agreed }}/{{ sess.decisions_total }} decisions
+          ({{ (100 * sess.decisions_agreed / sess.decisions_total) | round(0, 'floor') | int }}%).
+        </p>
+      {% endif %}
+      <a href="{{ url_for('new_battle_form') }}"><button type="button">Start a New Battle</button></a>
+    </section>
+  {% else %}
+    <section class="decision">
+      <h2>{{ decision_label }}</h2>
+
+      {% if decision_kind == "forced" %}
+        <p>(No choice here -- this move is locked in.)</p>
+      {% else %}
+        <form method="post" action="{{ url_for('battle_act') }}">
+          {% for category_label, opts in option_groups %}
+            <div class="option-group">
+              <h3>{{ category_label }}</h3>
+              <div class="options">
+                {% for value, desc in opts %}
+                  <button type="submit" name="action" value="{{ value }}">{{ desc }}</button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </form>
+
+        <form method="post" action="{{ url_for('battle_advise') }}">
+          <button type="submit">Ask TNLbot What It Would Do</button>
+        </form>
+
+        {% if advice %}
+          <div class="advice">
+            <h3>Model's recommendation (ranked by its own confidence)</h3>
+            <ol>
+              {% for desc, p in advice %}
+                <li>{{ desc }} &mdash; p={{ "%.2f"|format(p) }}{% if loop.first %} &larr; top pick{% endif %}</li>
+              {% endfor %}
+            </ol>
+          </div>
+        {% endif %}
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <section class="log">
+    <h2>Battle Log</h2>
+    <pre id="battle-log">{% for line in history %}{{ line }}
+{% endfor %}</pre>
+  </section>
+
+  <script>
+    // Every action here is a normal form POST + full page reload (no AJAX/
+    // JS framework, by design -- see README), so the log scroll position
+    // resets to the CSS default (top) on every single update unless we
+    // explicitly restore it. Always jump to the bottom so the latest line
+    // is what's visible, matching "the log always shows what just
+    // happened" rather than making the player scroll down after every
+    // click.
+    (function () {
+      var log = document.getElementById("battle-log");
+      if (log) {
+        log.scrollTop = log.scrollHeight;
+      }
+    })();
+  </script>
+
+{% endblock %}

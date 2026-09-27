@@ -1,0 +1,120 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  background: #12141a;
+  color: #e6e6e6;
+}
+
+a { color: #7fc8ff; }
+
+header h1 {
+  font-size: 1.4rem;
+}
+header h1 a { text-decoration: none; color: inherit; }
+
+h2 {
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+  margin-top: 28px;
+}
+
+pre {
+  background: #1c1f27;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 12px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.log pre {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+.field label {
+  display: block;
+  margin-bottom: 4px;
+}
+input[type="number"] {
+  background: #1c1f27;
+  color: #e6e6e6;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 6px;
+  width: 160px;
+}
+
+button {
+  background: #2471a3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 6px 0;
+}
+button:hover {
+  background: #1b567f;
+}
+
+.option-group {
+  margin: 14px 0;
+}
+.option-group h3 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: #9aa5b4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.options button {
+  margin: 0;
+  background: #2c3440;
+  border: 1px solid #465061;
+}
+.options button:hover {
+  background: #3a4456;
+}
+
+.reset-form {
+  float: right;
+}
+button.reset {
+  background: #7a2626;
+}
+button.reset:hover {
+  background: #932e2e;
+}
+
+button.continue {
+  background: #8a6d1c;
+  font-size: 1.05rem;
+  padding: 10px 18px;
+}
+button.continue:hover {
+  background: #a7852a;
+}
+
+.advice {
+  background: #24291c;
+  border: 1px solid #4a4a2c;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 10px;
+}
+.advice h3 {
+  margin-top: 0;
+}
