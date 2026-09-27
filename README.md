@@ -9,7 +9,6 @@ you, it only advises when asked.
 ## Setup
 
 ```bash
-cd webapp
 pip install -r requirements.txt
 python3 app.py
 ```
