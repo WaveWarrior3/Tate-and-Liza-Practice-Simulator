@@ -27,10 +27,7 @@ Then open <http://127.0.0.1:5000/> in a browser.
   still pick anything you want.
 - The opponent's HP is shown only as a bar (with the same green/yellow/red
   banding the real game uses), never an exact number — matching exactly
-  what the model itself is trained to see (`foe_hp_visible=True`, a
-  48-pixel-bar quantization of the true HP, source-confirmed against
-  pokeruby's `GetScaledHPFraction`/`GetHPBarLevel` — see the project's
-  `CLAUDE.md` and `models/MODELS.md`). Your own party's HP is shown
+  what the model itself is trained to see. Your own party's HP is shown
   exactly, matching the real game's own-side display. This means you
   can't accidentally practice with more information than a real player
   has.
